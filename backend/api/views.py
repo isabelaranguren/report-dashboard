@@ -1,6 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import UploadFileForm
+from rest_framework import viewsets
+from .models import Client
+from .serializers import ClientSerializer
+
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
 
 def upload_file(request):
     if request.method == 'POST':
